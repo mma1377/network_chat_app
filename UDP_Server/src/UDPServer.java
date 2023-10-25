@@ -27,7 +27,7 @@ public class UDPServer {
     public void launch() throws IOException {
         DatagramSocket socket = new DatagramSocket(_port);
 
-        socket.close();
+
     }
 
     @Override
