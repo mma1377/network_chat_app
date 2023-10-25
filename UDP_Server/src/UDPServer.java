@@ -12,9 +12,10 @@ public class UDPServer {
             udpServer = new UDPServer(Integer.parseInt(args[0]));
         }
         udpServer.launch();
+        System.out.println(udpServer);
     }
     private int _port;
-    private final String _host = "127.0.0.1";
+    private DatagramSocket _socket;
 
     UDPServer() {
         _port = 8439;
@@ -25,13 +26,16 @@ public class UDPServer {
     }
 
     public void launch() throws IOException {
-        DatagramSocket socket = new DatagramSocket(_port);
+        _socket = new DatagramSocket(_port);
 
 
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        if (_socket != null && !_socket.isClosed())
+            return "The server is running on port: " + _socket.getLocalPort();
+        else
+            return "The server is not running";
     }
 }
