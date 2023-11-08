@@ -30,20 +30,13 @@ public class UDPServer {
 
     public void launch() throws IOException {
         _socket = new DatagramSocket(_port);
-        Console console = System.console();
 
         while (true) {
-            byte[] byteBuffer = new byte[8];
+            byte[] byteBuffer = new byte[256];
             DatagramPacket datagramPacket = new DatagramPacket(byteBuffer, 8);
             _socket.receive(datagramPacket);
             String receivedStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
             System.out.println(receivedStr);
-            String inputLine = console.readLine();
-            if (Objects.equals(inputLine, "exit"))
-                break;
-            else if (Objects.equals(inputLine, "state"))
-                System.out.println(this);
-
         }
 
     }
