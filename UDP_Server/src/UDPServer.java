@@ -1,7 +1,9 @@
-import java.io.IOException;
+import java.io.*;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.io.Console;
+import java.net.Socket;
 import java.util.Objects;
+import java.util.Arrays;
 
 public class UDPServer {
 
@@ -31,11 +33,17 @@ public class UDPServer {
         Console console = System.console();
 
         while (true) {
+            byte[] byteBuffer = new byte[8];
+            DatagramPacket datagramPacket = new DatagramPacket(byteBuffer, 8);
+            _socket.receive(datagramPacket);
+            String receivedStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
+            System.out.println(receivedStr);
             String inputLine = console.readLine();
             if (Objects.equals(inputLine, "exit"))
                 break;
             else if (Objects.equals(inputLine, "state"))
                 System.out.println(this);
+
         }
 
     }
