@@ -1,6 +1,7 @@
 import java.io.IOException;
-import java.net.Socket;
 import java.net.DatagramSocket;
+import java.io.Console;
+import java.util.Objects;
 
 public class UDPServer {
 
@@ -27,7 +28,15 @@ public class UDPServer {
 
     public void launch() throws IOException {
         _socket = new DatagramSocket(_port);
+        Console console = System.console();
 
+        while (true) {
+            String inputLine = console.readLine();
+            if (Objects.equals(inputLine, "exit"))
+                break;
+            else if (Objects.equals(inputLine, "state"))
+                System.out.println(this);
+        }
 
     }
 
