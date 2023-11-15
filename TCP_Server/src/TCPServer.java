@@ -34,7 +34,8 @@ public class TCPServer {
         byte[] buf = new byte[4096];
         int bytes_read;
         while ((bytes_read = inputStream.read(buf)) != -1){
-            System.out.println(new String(buf));
+            System.out.println(new String(buf, 0, bytes_read));
+            buf = new byte[4096];
         }
     }
 
