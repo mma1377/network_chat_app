@@ -1,7 +1,11 @@
+package chat_TCP_Server;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TCPServer {
 
@@ -18,24 +22,27 @@ public class TCPServer {
 
     private int _port;
     private ServerSocket _serverSocket;
+    public List<ConnectionThread> connections;
 
     TCPServer() {
-        _port = 8439;
+        this(8439);
     }
 
     TCPServer(int listening_port) {
         _port = listening_port;
+        connections = new ArrayList<ConnectionThread>();
     }
 
     public void launch() throws IOException {
         _serverSocket = new ServerSocket(_port);
-        Socket socket = _serverSocket.accept();
-        InputStream inputStream = socket.getInputStream();
-        byte[] buf = new byte[4096];
-        int bytes_read;
-        while ((bytes_read = inputStream.read(buf)) != -1){
-            System.out.println(new String(buf, 0, bytes_read));
-            buf = new byte[4096];
+        ConnectionThread connection = new ConnectionThread(this, _serverSocket);
+        connection.start();
+        connections.add(connection);
+    }
+
+    public void Broadcast(String message) throws IOException {
+        for (int i = 0; i < connections.size(); ++i){
+            connections.get(i).send(message);
         }
     }
 
