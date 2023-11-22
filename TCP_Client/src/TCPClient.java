@@ -2,8 +2,10 @@ import java.io.*;
 import java.net.*;
 import java.util.Objects;
 
+import static java.lang.Thread.sleep;
+
 public class TCPClient {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         TCPClient tcpClient;
         if (args.length < 1)
             tcpClient = new TCPClient();
@@ -33,7 +35,7 @@ public class TCPClient {
     }
 
 
-    public void launch() throws IOException {
+    public void launch() throws IOException, InterruptedException {
         _socket = new Socket(_host, _port);
         Console console = System.console();
         while (true) {
@@ -42,6 +44,16 @@ public class TCPClient {
             byte[] data = inputLine.getBytes();
             output.write(data);
             PrintWriter writer = new PrintWriter(output, true);
+            byte[] buf = new byte[4096];
+            int bytes_read;
+            InputStream inputStream = _socket.getInputStream();
+            System.out.println(inputStream.available());
+            if(inputStream.available() > 0) {
+                if ((bytes_read = inputStream.read(buf)) != -1) {
+                    String respond = new String(buf, 0, bytes_read);
+                    System.out.println(respond);
+                }
+            }
         }
     }
 }
