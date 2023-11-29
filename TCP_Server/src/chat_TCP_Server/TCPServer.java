@@ -22,7 +22,7 @@ public class TCPServer {
 
     private int _port;
     private ServerSocket _serverSocket;
-    public List<ConnectionThread> connections;
+    public List<ConnectionThread> connectionsList;
 
     TCPServer() {
         this(8439);
@@ -30,19 +30,19 @@ public class TCPServer {
 
     TCPServer(int listening_port) {
         _port = listening_port;
-        connections = new ArrayList<ConnectionThread>();
+        connectionsList = new ArrayList<ConnectionThread>();
     }
 
     public void launch() throws IOException {
         _serverSocket = new ServerSocket(_port);
         ConnectionThread connection = new ConnectionThread(this, _serverSocket);
+        connectionsList.add(connection);
         connection.start();
-        connections.add(connection);
     }
 
     public void Broadcast(String message) throws IOException {
-        for (int i = 0; i < connections.size(); ++i){
-            connections.get(i).send(message);
+        for (ConnectionThread connection : connectionsList) {
+            connection.send(message);
         }
     }
 

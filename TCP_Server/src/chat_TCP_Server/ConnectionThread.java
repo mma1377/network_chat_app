@@ -21,19 +21,21 @@ public class ConnectionThread extends java.lang.Thread {
         byte[] data = broadcastMessage.getBytes();
         OutputStream output = _socket.getOutputStream();
         output.write(data);
-        PrintWriter writer = new PrintWriter(output, true);
     }
 
     public void run() {
         try {
             _socket = _serverSocket.accept();
-            (new ConnectionThread(_tcpServer, _serverSocket)).start();
+            ConnectionThread connection =  new ConnectionThread(_tcpServer, _serverSocket);
+            _tcpServer.connectionsList.add(connection);
+            connection.start();
             InputStream inputStream = _socket.getInputStream();
             byte[] buf = new byte[4096];
             int bytes_read;
             while ((bytes_read = inputStream.read(buf)) != -1){
                 String respond = new String(buf, 0, bytes_read) + " " + _socket.getLocalAddress().getHostAddress() + "\n";
                 _tcpServer.Broadcast(respond);
+                System.out.println(_socket);
             }
 
         } catch (IOException e) {

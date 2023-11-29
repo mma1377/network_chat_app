@@ -43,11 +43,10 @@ public class TCPClient {
             OutputStream output = _socket.getOutputStream();
             byte[] data = inputLine.getBytes();
             output.write(data);
-            PrintWriter writer = new PrintWriter(output, true);
             byte[] buf = new byte[4096];
             int bytes_read;
             InputStream inputStream = _socket.getInputStream();
-            System.out.println(inputStream.available());
+            //System.out.println(inputStream.available());
             if(inputStream.available() > 0) {
                 if ((bytes_read = inputStream.read(buf)) != -1) {
                     String respond = new String(buf, 0, bytes_read);
