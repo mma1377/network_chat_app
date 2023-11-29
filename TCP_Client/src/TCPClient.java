@@ -46,11 +46,10 @@ public class TCPClient {
             byte[] buf = new byte[4096];
             int bytes_read;
             InputStream inputStream = _socket.getInputStream();
-            //System.out.println(inputStream.available());
             if(inputStream.available() > 0) {
                 if ((bytes_read = inputStream.read(buf)) != -1) {
                     String respond = new String(buf, 0, bytes_read);
-                    System.out.println(respond);
+                    System.out.print(respond);
                 }
             }
         }

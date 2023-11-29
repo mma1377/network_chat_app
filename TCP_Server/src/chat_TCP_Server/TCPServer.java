@@ -42,7 +42,8 @@ public class TCPServer {
 
     public void Broadcast(String message) throws IOException {
         for (ConnectionThread connection : connectionsList) {
-            connection.send(message);
+            if(connection._socket != null)
+                connection.send(message);
         }
     }
 

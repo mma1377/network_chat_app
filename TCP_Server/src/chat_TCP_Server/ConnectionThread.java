@@ -34,8 +34,9 @@ public class ConnectionThread extends java.lang.Thread {
             int bytes_read;
             while ((bytes_read = inputStream.read(buf)) != -1){
                 String respond = new String(buf, 0, bytes_read) + " " + _socket.getLocalAddress().getHostAddress() + "\n";
-                _tcpServer.Broadcast(respond);
+                System.out.println(_tcpServer.connectionsList.get(0)._socket);
                 System.out.println(_socket);
+                _tcpServer.Broadcast(respond);
             }
 
         } catch (IOException e) {
