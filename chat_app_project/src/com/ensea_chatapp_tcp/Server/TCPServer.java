@@ -35,16 +35,20 @@ public class TCPServer {
 
     public void launch() throws IOException {
         _serverSocket = new ServerSocket(_port);
-        ConnectionThread connection = new ConnectionThread(this, _serverSocket);
-        connectionsList.add(connection);
-        connection.start();
+        NewConnection();
     }
 
     public void Broadcast(String message) throws IOException {
         for (ConnectionThread connection : connectionsList) {
             if(connection._socket != null)
-                connection.send(message);
+                connection.send_message(message);
         }
+    }
+
+    public void NewConnection() {
+        ConnectionThread connection =  new ConnectionThread(this, _serverSocket);
+        connectionsList.add(connection);
+        connection.start();
     }
 
     @Override

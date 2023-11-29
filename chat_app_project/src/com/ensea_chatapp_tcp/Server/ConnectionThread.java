@@ -17,8 +17,8 @@ public class ConnectionThread extends java.lang.Thread {
         _tcpServer = tcpServer;
     }
 
-    public void send(String broadcastMessage) throws IOException {
-        byte[] data = broadcastMessage.getBytes();
+    public void send_message(String message) throws IOException {
+        byte[] data = message.getBytes();
         OutputStream output = _socket.getOutputStream();
         output.write(data);
     }
@@ -26,9 +26,7 @@ public class ConnectionThread extends java.lang.Thread {
     public void run() {
         try {
             _socket = _serverSocket.accept();
-            ConnectionThread connection =  new ConnectionThread(_tcpServer, _serverSocket);
-            _tcpServer.connectionsList.add(connection);
-            connection.start();
+            _tcpServer.NewConnection();
             InputStream inputStream = _socket.getInputStream();
             byte[] buf = new byte[4096];
             int bytes_read;
