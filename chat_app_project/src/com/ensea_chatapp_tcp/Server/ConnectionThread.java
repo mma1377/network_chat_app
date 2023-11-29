@@ -10,10 +10,8 @@ import java.net.Socket;
 public class ConnectionThread extends java.lang.Thread {
     TCPServer _tcpServer;
     Socket _socket;
-    ServerSocket _serverSocket;
 
-    public ConnectionThread(TCPServer tcpServer, ServerSocket serverSocket) {
-        _serverSocket = serverSocket;
+    public ConnectionThread(TCPServer tcpServer) {
         _tcpServer = tcpServer;
     }
 
@@ -25,15 +23,13 @@ public class ConnectionThread extends java.lang.Thread {
 
     public void run() {
         try {
-            _socket = _serverSocket.accept();
+            _socket = _tcpServer.GetServerSocket().accept();
             _tcpServer.NewConnection();
             InputStream inputStream = _socket.getInputStream();
             byte[] buf = new byte[4096];
             int bytes_read;
             while ((bytes_read = inputStream.read(buf)) != -1){
                 String respond = new String(buf, 0, bytes_read) + " " + _socket.getLocalAddress().getHostAddress() + "\n";
-                System.out.println(_tcpServer.connectionsList.get(0)._socket);
-                System.out.println(_socket);
                 _tcpServer.Broadcast(respond);
             }
 

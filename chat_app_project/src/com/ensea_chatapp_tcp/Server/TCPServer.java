@@ -20,7 +20,7 @@ public class TCPServer {
         System.out.println(tcpServer);
     }
 
-    private int _port;
+    private final int _port;
     private ServerSocket _serverSocket;
     public List<ConnectionThread> connectionsList;
 
@@ -31,6 +31,10 @@ public class TCPServer {
     TCPServer(int listening_port) {
         _port = listening_port;
         connectionsList = new ArrayList<ConnectionThread>();
+    }
+
+    public ServerSocket GetServerSocket() {
+        return _serverSocket;
     }
 
     public void launch() throws IOException {
@@ -46,7 +50,7 @@ public class TCPServer {
     }
 
     public void NewConnection() {
-        ConnectionThread connection =  new ConnectionThread(this, _serverSocket);
+        ConnectionThread connection =  new ConnectionThread(this);
         connectionsList.add(connection);
         connection.start();
     }
