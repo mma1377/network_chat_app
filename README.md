@@ -4,7 +4,7 @@ This project implements a chat application that enables communication between co
 For the UDP part, we have a single-directional communication.
 The TCP protocol is used to make a fully functional chat app. You can also use a graphical interface for the client side.
 
-You can find the documentions [here](https://mma1377.github.io/network_chat_app/).
+You can find the documentation [here](https://mma1377.github.io/network_chat_app/).
 
 ## Project Structure
 
@@ -44,7 +44,7 @@ javac com/ensea_chatapp_tcp/Client/TCPClient.java
 
 ### Compile GUI class
 ```bash
-javac --module-path javafx-dir\javafx-sdk-21.0.1\lib --add-modules javafx.controls com/ensea_chatapp_gui/ChatApplication.java
+javac --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls com/ensea_chatapp_gui/ChatApplication.java
 ```
 
 ## How to Run
@@ -71,7 +71,7 @@ java com.ensea_chatapp_tcp.Client.TCPClient [host] [port]
 
 ### Run GUI Client
 ```bash
-java --module-path javafx-dirs\javafx-sdk-21.0.1\lib --add-modules javafx.controls com.ensea_chatapp_gui.ChatApplication 
+java --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls com.ensea_chatapp_gui.ChatApplication 
 ```
 
 ## Run pre-compiled jar files
@@ -87,10 +87,12 @@ java -jar Server_GUI.jar
 
 ### Run TCP Graphical Interface for Client
 ```bash
-java -jar Client_GUI.jar  
+java --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls -jar Client_GUI.jar
 ```
 
 ### Graphical Interface
+
+![Graphical Interface Screenshot](chatapp-gui-screenshot.png)
 
 #### GUI (HelloApplication.java)
 - Provides a graphical user interface for the TCP client.
