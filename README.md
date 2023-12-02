@@ -44,7 +44,7 @@ javac com/ensea_chatapp_tcp/Client/TCPClient.java
 
 ### Compile GUI class
 ```bash
-javac --module-path javafx-dir\javafx-sdk-21.0.1\lib --add-modules javafx.controls com/ensea_chatapp_gui/ChatApplication.java
+javac --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls com/ensea_chatapp_gui/ChatApplication.java
 ```
 
 ## How to Run
@@ -71,7 +71,7 @@ java com.ensea_chatapp_tcp.Client.TCPClient [host] [port]
 
 ### Run GUI Client
 ```bash
-java --module-path javafx-dirs\javafx-sdk-21.0.1\lib --add-modules javafx.controls com.ensea_chatapp_gui.ChatApplication 
+java --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls com.ensea_chatapp_gui.ChatApplication 
 ```
 
 ## Run pre-compiled jar files
@@ -87,7 +87,7 @@ java -jar Server_GUI.jar
 
 ### Run TCP Graphical Interface for Client
 ```bash
-java -jar Client_GUI.jar  
+java --module-path [javafx-dir]\javafx-sdk-21.0.1\lib --add-modules javafx.controls -jar Client_GUI.jar
 ```
 
 ### Graphical Interface
