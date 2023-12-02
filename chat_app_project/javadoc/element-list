@@ -1,0 +1,5 @@
+com.ensea_chatapp_gui
+com.ensea_chatapp_tcp.Client
+com.ensea_chatapp_tcp.Server
+com.ensea_chatapp_udp.Client
+com.ensea_chatapp_udp.Server
