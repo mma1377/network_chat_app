@@ -44,7 +44,6 @@ public class ConnectionThread extends java.lang.Thread {
         try {
             _socket = _tcpServer.GetServerSocket().accept();
             System.out.println("A new connection is established with ip address " + _socket.getInetAddress().getHostAddress());
-
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
