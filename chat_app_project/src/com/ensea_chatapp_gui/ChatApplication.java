@@ -132,7 +132,7 @@ public class ChatApplication extends Application {
         try {
             chatScene(stage, ip, port);
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -154,7 +154,7 @@ public class ChatApplication extends Application {
             _TCPClient.send_data(_chatTextEntry.getText());
             _chatTextEntry.clear();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 }

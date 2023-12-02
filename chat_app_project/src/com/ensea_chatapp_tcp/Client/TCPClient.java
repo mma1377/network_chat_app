@@ -1,7 +1,10 @@
 package com.ensea_chatapp_tcp.Client;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.Console;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
 /**
  * This is a class to implement a TCP Client needed to connect to the chat TCP server
