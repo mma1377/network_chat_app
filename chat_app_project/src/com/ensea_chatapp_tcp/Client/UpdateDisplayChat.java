@@ -1,6 +1,6 @@
 package com.ensea_chatapp_tcp.Client;
 
 @FunctionalInterface
-public interface MyFunction {
+public interface UpdateDisplayChat {
     void applyFunction(String text);
 }

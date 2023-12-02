@@ -40,7 +40,7 @@ public class TCPClient {
         _port = 8439;
         _host = host;
     }
-    TCPClient(String host, int port) {
+    public TCPClient(String host, int port) {
         _port = port;
         _host = host;
     }
@@ -60,7 +60,7 @@ public class TCPClient {
         _socket = new Socket(_host, _port);
     }
 
-    public void graphical_fetch(MyFunction function) throws IOException, InterruptedException {
+    public void graphical_fetch(UpdateDisplayChat function) throws IOException, InterruptedException {
         FetchThread fetchThread = new FetchThread(this, function);
         fetchThread.start();
     }
@@ -78,7 +78,6 @@ public class TCPClient {
     }
 
     public void send_data(String input) throws IOException {
-        System.out.println(input);
         OutputStream output = _socket.getOutputStream();
         byte[] data = input.getBytes();
         output.write(data);
