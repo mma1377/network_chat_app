@@ -4,7 +4,7 @@ This project implements a chat application that enables communication between co
 For the UDP part, we have a single-directional communication.
 The TCP protocol is used to make a fully functional chat app. You can also use a graphical interface for the client side.
 
-You can find the documentions [here](https://mma1377.github.io/network_chat_app/).
+You can find the documentation [here](https://mma1377.github.io/network_chat_app/).
 
 ## Project Structure
 
@@ -91,6 +91,8 @@ java -jar Client_GUI.jar
 ```
 
 ### Graphical Interface
+
+!Graphical Interface Screenshot](chatapp-gui-screenshot.png)
 
 #### GUI (HelloApplication.java)
 - Provides a graphical user interface for the TCP client.
