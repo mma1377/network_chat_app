@@ -1,8 +1,10 @@
 # Chat Application - UDP and TCP Communication
 
 This project implements a chat application that enables communication between computers using both UDP and TCP protocols. It consists of server and client components for UDP and TCP, as well as a graphical user interface for the client.
+For the UDP part, we have a single-directional communication.
+The TCP protocol is used to make a fully functional chat app. You can also use a graphical interface for the client side.
 
-You can find the documents here: https://mma1377.github.io/network_chat_app/
+You can find the documents [here](https://mma1377.github.io/network_chat_app/).
 
 ## Project Structure
 
@@ -35,41 +37,52 @@ You can find the documents here: https://mma1377.github.io/network_chat_app/
 
 To compile the project, ensure you have Java installed and execute the following commands:
 
-```bash
+
 ### Compile UDP classes
+```bash
 javac com/ensea_chatapp_udp/Server/UDPServer.java
 javac com/ensea_chatapp_udp/Client/UDPClient.java
+```
 
 ### Compile TCP classes
+```bash
 javac com/ensea_chatapp_tcp/Server/TCPServer.java
 javac com/ensea_chatapp_tcp/Server/ConnectionThread.java
 javac com/ensea_chatapp_tcp/Client/TCPClient.java
 javac com/ensea_chatapp_tcp/Client/FetchThread.java
+```
 
 ### Compile GUI class
+```bash
 javac com/ensea_chatapp_gui/HelloApplication.java
+```
 
 ## How to Run
 
 ### Run UDP Server
 ```bash
 java com.ensea_chatapp_udp.Server.UDPServer [port]
+```
 
 ### Run UDP Client
 ```bash
 java com.ensea_chatapp_udp.Client.UDPClient [host] [port]
+```
 
 ### Run TCP Server
 ```bash
 java com.ensea_chatapp_tcp.Server.TCPServer [port]
+```
 
 ### Run TCP Client (Console)
 ```bash
 java com.ensea_chatapp_tcp.Client.TCPClient [host] [port]
+```
 
 ### Run GUI Client
 ```bash
 java com.ensea_chatapp_gui.HelloApplication
+```
 
 #### GUI Interface:
 
