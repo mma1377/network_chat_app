@@ -3,10 +3,15 @@ package com.ensea_chatapp_udp.Server;
 import java.io.*;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.Socket;
-import java.util.Objects;
-import java.util.Arrays;
 
+/**
+ * This is a class to implement a UDP Server which receives data and print it in console
+ * <p>The class takes an optional command line arguments: Server port
+ * In the case that port is absent, 8439 is the default port.
+ *
+ * <p>Usage: java com.ensea_chatapp_udp.Server.UDPServer
+ * <p>Usage: java com.ensea_chatapp_udp.Server.UDPServer <server_port>
+ *  */
 public class UDPServer {
 
     public static void main(String[] args) throws IOException {
@@ -19,30 +24,41 @@ public class UDPServer {
         udpServer.launch();
         System.out.println(udpServer);
     }
-    private int _port;
+    private final int _port;
     private DatagramSocket _socket;
+    byte[] _byteBuffer;
 
     UDPServer() {
-        _port = 8439;
+        this(8439);
     }
 
     UDPServer(int listening_port) {
         _port = listening_port;
+        _byteBuffer = new byte[512];
     }
 
+    /**
+     * launch the server in order to receive data from clients and print it in console
+     */
     public void launch() throws IOException {
         _socket = new DatagramSocket(_port);
-
         while (true) {
-            byte[] byteBuffer = new byte[256];
-            DatagramPacket datagramPacket = new DatagramPacket(byteBuffer, 8);
-            _socket.receive(datagramPacket);
-            String receivedStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
-            System.out.println(receivedStr);
+            try {
+                DatagramPacket datagramPacket = new DatagramPacket(_byteBuffer, 8);
+                _socket.receive(datagramPacket);
+                String receivedStr = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
+                System.out.println(receivedStr);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                break;
+            }
         }
-
     }
 
+    /**
+     * Returns state of the Server
+     * @return State of server in String
+     */
     @Override
     public String toString() {
         if (_socket != null && !_socket.isClosed())

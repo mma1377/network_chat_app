@@ -2,11 +2,17 @@ package com.ensea_chatapp_tcp.Server;
 
 import java.io.*;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This is a class to implement a chat app TCP Server
+ * <p>The class takes an optional command line arguments: Server port
+ * In the case that port is absent, 8439 is the default port.
+ *
+ * <p>Usage: java com.ensea_chatapp_tcp.Server.TCPServer
+ * <p>Usage: java com.ensea_chatapp_tcp.Server.TCPServer <server_port>
+ *  */
 public class TCPServer {
 
     public static void main(String[] args) throws IOException {
@@ -22,7 +28,7 @@ public class TCPServer {
 
     private final int _port;
     private ServerSocket _serverSocket;
-    public List<ConnectionThread> connectionsList;
+    private final List<ConnectionThread> _connectionsList;
 
     TCPServer() {
         this(8439);
@@ -30,7 +36,7 @@ public class TCPServer {
 
     TCPServer(int listening_port) {
         _port = listening_port;
-        connectionsList = new ArrayList<ConnectionThread>();
+        _connectionsList = new ArrayList<ConnectionThread>();
     }
 
     public ServerSocket GetServerSocket() {
@@ -42,23 +48,39 @@ public class TCPServer {
         NewConnection();
     }
 
-    public void Broadcast(String message) throws IOException {
-        for (ConnectionThread connection : connectionsList) {
+    /**
+     * Send message to all clients connected to threads
+     *
+     * @param message The message as String
+     */
+    public void Echo(String message) throws IOException {
+        for (ConnectionThread connection : _connectionsList) {
             if(connection._socket != null)
                 connection.send_message(message);
         }
     }
 
+    /**
+     * Create a new connection thread and add it to the connection threads list
+     */
     public void NewConnection() {
         ConnectionThread connection =  new ConnectionThread(this);
-        connectionsList.add(connection);
+        _connectionsList.add(connection);
         connection.start();
     }
 
+    /**
+     * Remove a connection thread from connection threads list
+     * @param connection The connection which should be removed
+     */
     public void RemoveConnection(ConnectionThread connection) {
-        connectionsList.remove(connection);
+        _connectionsList.remove(connection);
     }
 
+    /**
+     * Returns state of the Server
+     * @return State of server in String
+     */
     @Override
     public String toString() {
         if (_serverSocket != null && !_serverSocket.isClosed())
