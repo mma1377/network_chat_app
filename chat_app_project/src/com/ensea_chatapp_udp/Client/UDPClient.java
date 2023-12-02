@@ -14,8 +14,8 @@ import java.net.SocketException;
  * In the case that the address or ports are absent, the localhost is the default address and 8439 is the default port.
  *
  * <p>Usage: java com.ensea_chatapp_udp.Client.UDPClient
- * <p>Usage: java com.ensea_chatapp_udp.Client.UDPClient <server_ip>
- * <p>Usage: java com.ensea_chatapp_udp.Client.UDPClient <server_ip> <server_port>
+ * <p>Usage: java com.ensea_chatapp_udp.Client.UDPClient server_ip
+ * <p>Usage: java com.ensea_chatapp_udp.Client.UDPClient server_ip server_port
  *  */
 public class UDPClient {
     public static void main(String[] args) throws IOException {

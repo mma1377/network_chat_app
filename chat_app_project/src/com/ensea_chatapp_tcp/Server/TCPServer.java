@@ -11,7 +11,7 @@ import java.util.List;
  * In the case that port is absent, 8439 is the default port.
  *
  * <p>Usage: java com.ensea_chatapp_tcp.Server.TCPServer
- * <p>Usage: java com.ensea_chatapp_tcp.Server.TCPServer <server_port>
+ * <p>Usage: java com.ensea_chatapp_tcp.Server.TCPServer server_port
  *  */
 public class TCPServer {
 

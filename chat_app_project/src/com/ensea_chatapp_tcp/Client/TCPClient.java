@@ -13,8 +13,8 @@ import java.net.Socket;
  * In the case that the address or ports are absent, the localhost is the default address and 8439 is the default port.
  *
  * <p>Usage: java com.ensea_chatapp_tcp.Client.TCPClient
- * <p>Usage: java com.ensea_chatapp_tcp.Client.TCPClient <server_ip>
- * <p>Usage: java com.ensea_chatapp_tcp.Client.TCPClient <server_ip> <server_port>
+ * <p>Usage: java com.ensea_chatapp_tcp.Client.TCPClient server_ip
+ * <p>Usage: java com.ensea_chatapp_tcp.Client.TCPClient server_ip server_port
  *  */
 public class TCPClient {
 

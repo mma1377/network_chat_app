@@ -10,7 +10,7 @@ import java.net.DatagramSocket;
  * In the case that port is absent, 8439 is the default port.
  *
  * <p>Usage: java com.ensea_chatapp_udp.Server.UDPServer
- * <p>Usage: java com.ensea_chatapp_udp.Server.UDPServer <server_port>
+ * <p>Usage: java com.ensea_chatapp_udp.Server.UDPServer server_port
  *  */
 public class UDPServer {
 
