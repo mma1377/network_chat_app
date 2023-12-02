@@ -20,23 +20,15 @@ You can find the documents [here](https://mma1377.github.io/network_chat_app/).
 
 #### TCP Server (TCPServer.java)
 - Listens for TCP connections on a specified port (default: 8439).
-- Accepts multiple client connections and broadcasts messages.
+- Accepts multiple client connections and echoes messages to all clients.
 
 #### TCP Client (TCPClient.java)
 - Connects to the TCP server on a specified host and port (default: localhost:8439).
-- Allows user input through the console.
-
-### Graphical Interface
-
-#### GUI (HelloApplication.java)
-- Provides a graphical user interface for the TCP client.
-- Displays chat messages in a scrollable window.
-- Allows users to input messages and send them to the server.
+- Allows user input through the console and sends it to the server. It can be used as a single thread-blocking mode (used in the terminal by default) or multi-thread to send and receive data asynchronously (used in graphical mode). 
 
 ## How to Compile
 
 To compile the project, ensure you have Java installed and execute the following commands:
-
 
 ### Compile UDP classes
 ```bash
@@ -47,14 +39,12 @@ javac com/ensea_chatapp_udp/Client/UDPClient.java
 ### Compile TCP classes
 ```bash
 javac com/ensea_chatapp_tcp/Server/TCPServer.java
-javac com/ensea_chatapp_tcp/Server/ConnectionThread.java
 javac com/ensea_chatapp_tcp/Client/TCPClient.java
-javac com/ensea_chatapp_tcp/Client/FetchThread.java
 ```
 
 ### Compile GUI class
 ```bash
-javac com/ensea_chatapp_gui/HelloApplication.java
+javac --module-path javafx-dir\javafx-sdk-21.0.1\lib --add-modules javafx.controls com/ensea_chatapp_gui/ChatApplication.java
 ```
 
 ## How to Run
@@ -74,29 +64,36 @@ java com.ensea_chatapp_udp.Client.UDPClient [host] [port]
 java com.ensea_chatapp_tcp.Server.TCPServer [port]
 ```
 
-### Run TCP Client (Console)
+### Run TCP Client
 ```bash
 java com.ensea_chatapp_tcp.Client.TCPClient [host] [port]
 ```
 
 ### Run GUI Client
 ```bash
-java com.ensea_chatapp_gui.HelloApplication
+java --module-path javafx-dirs\javafx-sdk-21.0.1\lib --add-modules javafx.controls com.ensea_chatapp_gui.ChatApplication 
 ```
 
-#### GUI Interface:
+## Run pre-compiled jar files
+You can also use pre-compiled jar files to use functionalities.
+### Run TCP Server
+```bash
+java -jar Client_GUI.jar  
+```
+### Run TCP Client 
+```bash
+java -jar Server_GUI.jar  
+```
 
-The GUI window will appear with a label to display chat messages.
-Type your message in the text field at the bottom.
-Press the "Send" button or hit the Enter key to send your message.
+### Run TCP Graphical Interface for Client
+```bash
+java -jar Client_GUI.jar  
+```
 
-#### Viewing Messages:
+### Graphical Interface
 
-Sent and received messages will be displayed in the label area.
-The scroll pane allows you to view past messages.
-
-#### Closing the Application:
-
-Close the GUI window to exit the application.
-
-This README provides a high-level overview of the project, explains the components, and gives instructions on how to compile and run each part of the application.
+#### GUI (HelloApplication.java)
+- Provides a graphical user interface for the TCP client.
+- Allows users to connect to the server by specifying the address.
+- Displays chat messages
+- Allows users to input messages and send them to the server.
