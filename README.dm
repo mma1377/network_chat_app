@@ -2,6 +2,8 @@
 
 This project implements a chat application that enables communication between computers using both UDP and TCP protocols. It consists of server and client components for UDP and TCP, as well as a graphical user interface for the client.
 
+You can find the documents here: https://mma1377.github.io/network_chat_app/
+
 ## Project Structure
 
 ### UDP Communication
