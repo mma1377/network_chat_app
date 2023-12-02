@@ -1,6 +1,6 @@
 # Chat Application - UDP and TCP Communication
 
-authors:
+Authors:
   - [Mohammadmahdi Alijani](https://github.com/mma1377)
   - [Maryna Shapoval](https://github.com/maryshap)
 ---
