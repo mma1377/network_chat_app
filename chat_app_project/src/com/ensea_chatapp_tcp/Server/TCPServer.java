@@ -55,6 +55,10 @@ public class TCPServer {
         connection.start();
     }
 
+    public void RemoveConnection(ConnectionThread connection) {
+        connectionsList.remove(connection);
+    }
+
     @Override
     public String toString() {
         if (_serverSocket != null && !_serverSocket.isClosed())

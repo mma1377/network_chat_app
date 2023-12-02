@@ -29,12 +29,13 @@ public class ConnectionThread extends java.lang.Thread {
             byte[] buf = new byte[4096];
             int bytes_read;
             while ((bytes_read = inputStream.read(buf)) != -1){
-                String respond = new String(buf, 0, bytes_read) + " " + _socket.getLocalAddress().getHostAddress() + "\n";
+                    String respond = _socket.getInetAddress().getHostAddress() + ": " + new String(buf, 0, bytes_read) + "\n";
                 _tcpServer.Broadcast(respond);
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+             System.out.println(e.getMessage());
+             _tcpServer.RemoveConnection(this);
         };
     }
 

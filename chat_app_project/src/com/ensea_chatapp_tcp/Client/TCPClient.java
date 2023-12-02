@@ -1,5 +1,7 @@
 package com.ensea_chatapp_tcp.Client;
 
+import javafx.scene.control.Label;
+
 import java.io.*;
 import java.net.*;
 import java.util.Objects;
@@ -28,8 +30,9 @@ public class TCPClient {
 
     private final int _port;
     private final String _host;
+    private Socket _socket;
 
-    TCPClient() {
+    public TCPClient() {
         _port = 8439;
         _host = "localhost";
     }
@@ -48,18 +51,36 @@ public class TCPClient {
         Console console = System.console();
         while (true) {
             String inputLine = console.readLine();
-            OutputStream output = _socket.getOutputStream();
-            byte[] data = inputLine.getBytes();
-            output.write(data);
-            byte[] buf = new byte[4096];
-            int bytes_read;
-            InputStream inputStream = _socket.getInputStream();
-            if(inputStream.available() > 0) {
-                if ((bytes_read = inputStream.read(buf)) != -1) {
-                    String respond = new String(buf, 0, bytes_read);
-                    System.out.print(respond);
-                }
+            send_data(inputLine);
+            System.out.print(fetch_data());
+        }
+    }
+
+    public void graphical_launch() throws IOException, InterruptedException {
+        _socket = new Socket(_host, _port);
+    }
+
+    public void graphical_fetch(MyFunction function) throws IOException, InterruptedException {
+        FetchThread fetchThread = new FetchThread(this, function);
+        fetchThread.start();
+    }
+
+    public String fetch_data() throws IOException {
+        byte[] buf = new byte[4096];
+        int bytes_read;
+        InputStream inputStream = _socket.getInputStream();
+        if(inputStream.available() > 0) {
+            if ((bytes_read = inputStream.read(buf)) != -1) {
+                return new String(buf, 0, bytes_read);
             }
         }
+        return null;
+    }
+
+    public void send_data(String input) throws IOException {
+        System.out.println(input);
+        OutputStream output = _socket.getOutputStream();
+        byte[] data = input.getBytes();
+        output.write(data);
     }
 }
