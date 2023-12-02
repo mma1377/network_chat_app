@@ -30,11 +30,11 @@ public class TCPServer {
     private ServerSocket _serverSocket;
     private final List<ConnectionThread> _connectionsList;
 
-    TCPServer() {
+    public TCPServer() {
         this(8439);
     }
 
-    TCPServer(int listening_port) {
+    public TCPServer(int listening_port) {
         _port = listening_port;
         _connectionsList = new ArrayList<ConnectionThread>();
     }
