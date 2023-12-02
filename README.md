@@ -1,5 +1,10 @@
 # Chat Application - UDP and TCP Communication
 
+authors:
+  - [Mohammadmahdi Alijani](https://github.com/mma1377)
+  - [Maryna Shapoval](https://github.com/maryshap)
+---
+
 This project implements a chat application that enables communication between computers using both UDP and TCP protocols. It consists of server and client components for UDP and TCP, as well as a graphical user interface for the client.
 For the UDP part, we have a single-directional communication.
 The TCP protocol is used to make a fully functional chat app. You can also use a graphical interface for the client side.
