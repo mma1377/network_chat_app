@@ -92,7 +92,7 @@ java -jar Client_GUI.jar
 
 ### Graphical Interface
 
-!Graphical Interface Screenshot](chatapp-gui-screenshot.png)
+![Graphical Interface Screenshot](chatapp-gui-screenshot.png)
 
 #### GUI (HelloApplication.java)
 - Provides a graphical user interface for the TCP client.
