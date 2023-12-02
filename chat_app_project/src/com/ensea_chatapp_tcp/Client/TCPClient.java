@@ -60,12 +60,21 @@ public class TCPClient {
      * send data read from console to server and fetch the data available from server synchronously
      * The function will continue fetch sending/fetching cycle infinitely
      */
-    public void synchronous_send_and_fetch() throws IOException {
+    public void synchronous_send_and_fetch() {
         Console console = System.console();
         while (true) {
-            String inputLine = console.readLine();
-            send_data(inputLine);
-            System.out.print(fetch_data());
+            try {
+                String inputLine = console.readLine();
+                send_data(inputLine);
+                String fetchedData = fetch_data();
+                if (fetchedData != null) {
+                    System.out.print(fetchedData);
+                }
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+                break;
+            }
         }
     }
 
